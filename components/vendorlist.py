@@ -19,7 +19,6 @@ class Vendorlist():
             print("Updating vendorlist successfull!")
         except ClientConnectorError as e:
             print(e)
-            #aiohttp.client_exceptions.ClientPayloadError: Response payload is not completed
 
 
     #-----{IEEE standards-oui check}-----#
