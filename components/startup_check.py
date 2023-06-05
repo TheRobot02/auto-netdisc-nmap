@@ -1,7 +1,7 @@
 #------------[Imports]------------#
 try:
-    import asyncio
     from configparser import ConfigParser 
+    import nmap
     from os import remove, path
     from components import Vendorlist
     
@@ -13,6 +13,7 @@ except ModuleNotFoundError as e:
 #-----[local variables]-----#
 config = ConfigParser()
 vlist = Vendorlist()
+nm = nmap.PortScanner()
 
 
 #-----[startup check class]-----#
@@ -22,9 +23,15 @@ class Startup_check():
     def startup_list(self):
         if path.exists("config.ini") == False:
             self.config_file()
+        config.read("config.ini")
+        arguments = config.get("command_line_arguments", "nmap_arguments")
+        argument_check = nm.scan(arguments)
+        if 'Error' in str(argument_check):
+            print("nmap: option requires an argument \nSee the output of nmap -h for a summary of options.\nExiting!")
+            exit()
         if path.exists("mac-vendors.txt") == False:
             print("No vendorlist has been found. Creating new vendorlist!")
-            vlist.check_IEEE()
+            vlist.check_IEEE()       
         else:
             while True:
                 update_check_prompt = input("Do you want to update the local vendor list? (y/n): ")
@@ -36,7 +43,6 @@ class Startup_check():
                 else:
                     print(f"{update_check_prompt} is a non-valid input.")
                     continue
-        config.read("config.ini")
         file_location = config.get("write_to_file", "devices_file")
         if path.exists(file_location):
             remove(file_location)
@@ -57,6 +63,8 @@ class Startup_check():
         config.set("write_to_file", "devices_file_filterd", "devices_filtered.txt")
         config.set("write_to_file", "devices_file_ip_filterd", "devices_ip_filtered.txt")
         config.set("write_to_file", "nmap-scan_file", "nmap-scan.txt")
+        config.add_section("command_line_arguments")
+        config.set("command_line_arguments", "nmap_arguments", "-vv -p-")
 
         with open('config.ini', 'w') as config_file:
             config.write(config_file)

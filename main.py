@@ -1,6 +1,7 @@
-#python 3.11.3
+#!/usr/bin/python
+# made with python 3.11
 
-# Bronnen:
+# sources:
 # Openai 
 # w3schools
 # https://pypi.org/project/mac-vendor-lookup/
@@ -12,7 +13,6 @@
 try:
     from configparser import ConfigParser 
     from components import Startup_check, NetDiscovery, filter_list, nmap_custom_scan
-    from os import path
     from sys import version_info
 except ModuleNotFoundError as e:
     print(f"missing modual {e}.\nExiting!")
@@ -34,9 +34,13 @@ config = ConfigParser()
 
 #------------[main]------------#
 if __name__ == "__main__":
-    startup.startup_list()
-    devices = netdiscovery.discover_devices()
-    for device in devices:
-        print(f"IP: {device['ip']}\t MAC: {device['mac']}\t VENDOR: {device['vendor']}")
-    filterd_devices_ip = filter_list(devices)
-    nmap_custom_scan(filterd_devices_ip)
+    try:
+        startup.startup_list()
+        devices = netdiscovery.discover_devices()
+        for device in devices:
+            print(f"IP: {device['ip']}\t MAC: {device['mac']}\t VENDOR: {device['vendor']}")
+        filterd_devices_ip = filter_list(devices)
+        nmap_custom_scan(filterd_devices_ip)
+    except KeyboardInterrupt:
+        print("\nProgram interrupted by the user.\nExiting")
+            
