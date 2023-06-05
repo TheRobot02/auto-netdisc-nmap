@@ -26,7 +26,7 @@ def nmap_custom_scan(filterd_devices_ip):
     for ip in filterd_devices_ip:
         with open(scan_file, "a") as file:
             file.write(f"{ip['ip']}\n")
-        print(f"Host: {ip['ip']}")
+        print(f"\nHost: {ip['ip']}")
         nm.scan(ip['ip'], arguments=arguments)
         for host in nm.all_hosts():           
             for proto in nm[host].all_protocols():
@@ -36,10 +36,5 @@ def nmap_custom_scan(filterd_devices_ip):
                     port_string = f"\tPort: {port}\t State: {nm[host][proto][port]['state']}\t Service: {nm[host][proto][port]['name']}"
                     print(port_string)
                     with open(scan_file, "a") as file:
-                        file.write(f"\t{port_string}\n")
-        print("\n")
+                        file.write(f"{port_string}\n")
     print(f"scan completen!\nSaved to {scan_file}")
-
-
-# what happends if command arguments not right?
-# nmap.nmap.PortScannerError: "nmap: option requires an argument -- 'p'\nSee the output of nmap -h for a summary of options.\n"
