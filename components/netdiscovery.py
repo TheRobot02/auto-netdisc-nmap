@@ -61,7 +61,8 @@ class NetDiscovery():
                 vendor =  "Unknown"
 
             devices.append({'ip': received.psrc, 'mac': received.hwsrc, 'vendor': vendor})
-
+            print(f"IP: {received.psrc}\t MAC: {received.hwsrc}\t VENDOR: {vendor}")
+            
         self.write_to_file(devices)
         return devices
 

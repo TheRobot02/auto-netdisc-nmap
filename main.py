@@ -37,8 +37,6 @@ if __name__ == "__main__":
     try:
         startup.startup_list()
         devices = netdiscovery.discover_devices()
-        for device in devices:
-            print(f"IP: {device['ip']}\t MAC: {device['mac']}\t VENDOR: {device['vendor']}")
         filterd_devices_ip = filter_list(devices)
         nmap_custom_scan(filterd_devices_ip)
     except KeyboardInterrupt:
