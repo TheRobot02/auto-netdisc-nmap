@@ -26,14 +26,6 @@ def filter_list(devices):
                 with open(file_name2, "a") as file2: # Hier ergens error
                     file2.write(f"IP: {device['ip']}\t MAC: {device['mac']}\t VENDOR: {device['vendor']}\n")
                 filterd_vendors.append({'ip': device['ip']})
-        
-        #with open(file_name1, "r") as file1:
-        #    while line := file1.readline():
-        #        match = re.search(pattern, line, flags=re.IGNORECASE)
-        #        if match == None:
-        #            with open(file_name2, "a") as file2: # Hier ergens error
-        #                file2.write(line)
-        #            filterd_vendors.append({'ip': })
         print(f"Filtered vendors output saved to {file_name2}")
         return filterd_vendors 
 

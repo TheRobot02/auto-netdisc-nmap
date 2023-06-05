@@ -39,14 +39,4 @@ if __name__ == "__main__":
     for device in devices:
         print(f"IP: {device['ip']}\t MAC: {device['mac']}\t VENDOR: {device['vendor']}")
     filterd_devices_ip = filter_list(devices)
-    #filter_ip_addresses()
-    #config.read("config.ini")
-    #file_location = config.get("write_to_file", "devices_file_ip_filterd")
-    #if path.exists(file_location) == False:
-    #    print(f"{file_location} is not found.\tUnable to continue.\tExiting!")
-    #    exit()
     nmap_custom_scan(filterd_devices_ip)
-
-
-    #skip ip filter
-    #read ip from list

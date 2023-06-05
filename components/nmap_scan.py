@@ -31,8 +31,3 @@ def nmap_custom_scan(filterd_devices_ip):
                     with open(scan_file, "a") as file:
                         file.write(f"{port_string}\n")
     print(f"scan completen!\n Saved to {scan_file}")
-
-#-----[plan]-----#
-
-# make nmap save to file
-# modulair ip-addresses implementation 
