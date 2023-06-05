@@ -11,7 +11,7 @@
 #------------[Imports]------------#
 try:
     from configparser import ConfigParser 
-    from components import Startup_check, NetDiscovery, filter_list, filter_ip_addresses, nmap_custom_scan
+    from components import Startup_check, NetDiscovery, filter_list, nmap_custom_scan
     from os import path
     from sys import version_info
 except ModuleNotFoundError as e:
