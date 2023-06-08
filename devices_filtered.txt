@@ -1,0 +1,2 @@
+IP: 10.0.2.3	 MAC: 08:00:27:17:66:ea	 VENDOR: PCS Systemtechnik GmbH
+IP: 10.0.2.4	 MAC: 00:1d:59:fe:03:d1	 VENDOR: Mitra Energy & Infrastructure
