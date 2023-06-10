@@ -12,7 +12,7 @@
 #------------[Imports]------------#
 try:
     from configparser import ConfigParser 
-    from components import Startup_check, NetDiscovery, filter_list, nmap_custom_scan
+    from components import StartupCheck, NetDiscovery, filter_list, nmap_custom_scan
     from sys import version_info
 except ModuleNotFoundError as e:
     print(f"missing modual {e}.\nExiting!")
@@ -24,8 +24,8 @@ if version_info <= (3, 11):
     print("Python 3.11 or later is required to run this code.")
     exit()
     
-#-----[local variables]-----#
-startup = Startup_check()
+#-----[global variables]-----#
+startup = StartupCheck()
 netdiscovery = NetDiscovery() 
 config = ConfigParser()
 
@@ -41,4 +41,4 @@ if __name__ == "__main__":
         nmap_custom_scan(filterd_devices_ip)
     except KeyboardInterrupt:
         print("\nProgram interrupted by the user.\nExiting")
-            
+        exit()

@@ -3,7 +3,7 @@ try:
     from configparser import ConfigParser 
     import nmap
     from os import remove, path
-    from components import Vendorlist
+    from components import VendorList
     
 except ModuleNotFoundError as e:
     print(f"startup_check. {e}.\nExiting!")
@@ -12,12 +12,12 @@ except ModuleNotFoundError as e:
 
 #-----[local variables]-----#
 config = ConfigParser()
-vlist = Vendorlist()
+vlist = VendorList()
 nm = nmap.PortScanner()
 
 
 #-----[startup check class]-----#
-class Startup_check():
+class StartupCheck():
 
     #-----[startup check]-----#
     def startup_list(self):

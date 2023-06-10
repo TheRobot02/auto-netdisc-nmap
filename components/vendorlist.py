@@ -9,7 +9,7 @@ except ModuleNotFoundError as e:
     exit()
 
 
-class Vendorlist():
+class VendorList():
     #-----{vendorlist update}-----#
     async def vendors_update(self):
         print("Updating vendorlist...")

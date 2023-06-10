@@ -35,16 +35,16 @@ class NetDiscovery():
         ipadres = ".".join(dot_decimaal) 
 
         binary_mask = ''.join(format(int(x), '08b') for x in netmask.split('.'))
-        cidr = str(len(binary_mask.rstrip('0')))
+        prefix = str(len(binary_mask.rstrip('0')))
         
-        default_network = ipadres+"/"+cidr
+        default_network = ipadres+"/"+prefix
         return default_network
 
 
     #-----[Network discovery]-----#
     def discover_devices(self):
-        ip_range = self.get_current_network() 
         print("Discovering network...")
+        ip_range = self.get_current_network() 
         arp = ARP(pdst=ip_range)
         ether = Ether(dst="ff:ff:ff:ff:ff:ff")
         packet = ether / arp
